@@ -1,0 +1,5 @@
+package OpenEJA.BO;
+
+public class Users extends Entity {
+
+}

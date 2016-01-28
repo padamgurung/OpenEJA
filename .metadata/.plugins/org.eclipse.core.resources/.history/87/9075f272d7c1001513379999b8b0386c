@@ -1,0 +1,18 @@
+package openeja.dp;
+
+import java.lang.reflect.*;
+
+public class DBFactoryAdapter {
+	
+	public DBAdapter getAdapter(String adapterType) {
+		
+		if(adapterType == null){
+			return null;
+		}
+		
+		 Object adapter = Class.forName("MySQLAdapter").newInstance();
+		return (DBAdapter) adapter;
+		
+	}
+
+}

@@ -1,0 +1,105 @@
+package OpenEJA.DAL;
+
+import java.sql.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
+
+
+
+
+public abstract class DBAdapter implements IDBAdapter {
+
+	String dbUrl = "jdbc:mysql://localhost:3306/javadb";
+	String user = "javadb";
+	String pass = "Password123";
+
+	Connection myConn;
+	Statement myStmt;
+	String sql;
+
+	@Override
+	public void connect() {
+		try {
+
+			myConn = DriverManager.getConnection(dbUrl, user, pass);
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void insert(String table, HashMap<?, ?> map) {
+		try {
+			StringBuffer fieldNames = new StringBuffer();
+			StringBuffer fieldValues = new StringBuffer();
+			Iterator<?> iterator = map.entrySet().iterator();
+			while(iterator.hasNext()){
+				Entry<?, ?> entry = (Entry<?, ?>) iterator.next();
+				fieldNames.append(entry.getKey());
+				fieldValues.append("'").append(entry.getValue()).append("'");
+				if(iterator.hasNext()) {
+					fieldNames.append(",");
+					fieldValues.append(",");
+				}
+			}
+			StringBuilder sql = new StringBuilder();
+			sql.append("INSERT INTO ").append(table).append("( ").append(fieldNames.toString()).append(" )");
+			sql.append("VALUES (").append(fieldValues.toString()).append(" )");
+			System.out.println(sql.toString());
+			myStmt = myConn.createStatement();
+			
+			myStmt.executeUpdate(sql.toString());
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void update() {
+		try {
+			myStmt = myConn.createStatement();
+			String sql = "update employees set email='padam.gurung@outlook.com' where id=2";
+			myStmt.executeUpdate(sql);
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void delete() {
+		try {
+			myStmt = myConn.createStatement();
+			sql = "delete from employees where id='1' ";
+			myStmt.executeUpdate(sql);
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void retrieve() {
+		try {
+			myStmt = myConn.createStatement();
+			ResultSet myRs = myStmt.executeQuery("select * from employees");
+			while (myRs.next()) {
+				System.out.println(myRs.getString("id") + ", " + myRs.getString("last_name") + ", " + myRs.getString("first_name") + ", "
+						+ myRs.getString("email"));
+			}
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
+	}
+
+}

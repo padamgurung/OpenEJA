@@ -1,0 +1,12 @@
+package openeja.dp;
+
+public class MySQLAdapter extends DBAdapter {
+
+	@Override
+	public void connect() {
+		
+		
+	}
+	
+	
+}

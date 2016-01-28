@@ -1,0 +1,10 @@
+package openeja.dp;
+
+public class Program {
+	
+	public static void main(String[] args) {
+		DBFactoryAdapter dbFactoryAdapter = new DBFactoryAdapter();
+		DBAdapter dbAdapter = dbFactoryAdapter.getAdapter(MySQLAdapter.class.getName());
+	}
+
+}

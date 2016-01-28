@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.lang.Override"/>
+<fullyQualifiedTypeName name="openeja.dp.OracleAdapter"/>
+<fullyQualifiedTypeName name="openeja.dp.PostgresSQLAdapter"/>
+<fullyQualifiedTypeName name="openeja.dp.SQLLiteAdapter"/>
+<fullyQualifiedTypeName name="openeja.dp.DBAdapter"/>
+<fullyQualifiedTypeName name="openeja.dp.DBFactoryAdapter"/>
+<fullyQualifiedTypeName name="openeja.dp.MySQLAdapter"/>
+<fullyQualifiedTypeName name="openeja.dp.IDBAdapter"/>
+<fullyQualifiedTypeName name="Example.User"/>
+<fullyQualifiedTypeName name="java.util.LinkedList"/>
+<fullyQualifiedTypeName name="OpenEJA.ORM.IEntity"/>
+<fullyQualifiedTypeName name="java.lang.annotation.Retention"/>
+<fullyQualifiedTypeName name="java.lang.annotation.RetentionPolicy"/>
+<fullyQualifiedTypeName name="java.lang.annotation.Target"/>
+<fullyQualifiedTypeName name="java.lang.annotation.ElementType"/>
+<fullyQualifiedTypeName name="OpenEJA.Annotation.Table"/>
+<fullyQualifiedTypeName name="java.lang.reflect.Field"/>
+<fullyQualifiedTypeName name="OpenEJA.Annotation.Id"/>
+<fullyQualifiedTypeName name="java.sql.Connection"/>
+<fullyQualifiedTypeName name="java.sql.DriverManager"/>
+<fullyQualifiedTypeName name="OpenEJA.ORM.Entity"/>
+<fullyQualifiedTypeName name="OpenEJA.BO.User"/>
+</qualifiedTypeNameHistroy>

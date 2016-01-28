@@ -1,0 +1,18 @@
+package Example;
+
+import OpenEJA.ORM.Entity;
+
+public class User extends Entity {
+	
+	private String name;
+	private String email;
+	private String mobileNumber;
+	
+	
+	
+	@Override
+	public void addNew() {	
+		System.out.println("User added");
+	}
+
+}

@@ -1,0 +1,38 @@
+package OpenEJA.ORM;
+
+import java.util.LinkedList;
+
+public abstract class Entity implements IEntity {
+	
+	private LinkedList<IEntity> entities;
+	
+	public Entity() {
+		setEntities(new LinkedList<IEntity>());
+	}
+	
+	@Override
+	public void find() {
+		
+		
+	}
+	@Override
+	public void addNew() {
+	
+		
+	}
+	@Override
+	public void saveChanges() {
+		
+		
+	}
+	@Override
+	public void remove() {
+		
+		
+	}
+
+	public void setEntities(LinkedList<IEntity> entities) {
+		this.entities = entities;
+	}
+
+}

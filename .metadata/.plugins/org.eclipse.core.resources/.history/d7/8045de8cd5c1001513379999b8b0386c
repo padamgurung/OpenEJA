@@ -1,0 +1,14 @@
+package openeja.dp;
+
+public class DBFactoryAdapter {
+	
+	public DBAdapter getAdapter(String adapterType) {
+		
+		
+		if(adapterType.equalsIgnoreCase("MySQL")){
+			return new MySQLAdapter();
+		}
+		
+	}
+
+}

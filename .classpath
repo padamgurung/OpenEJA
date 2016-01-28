@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="App/src"/>
+	<classpathentry kind="src" path="BO/src"/>
+	<classpathentry kind="src" path="DAL/src"/>
+	<classpathentry kind="src" path="ORM/src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="App/bin"/>
+</classpath>

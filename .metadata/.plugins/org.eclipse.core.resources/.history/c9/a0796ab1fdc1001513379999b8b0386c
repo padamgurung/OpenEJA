@@ -1,0 +1,14 @@
+package OpenEJA.DAL;
+
+public class Program {
+	
+	public static void main(String[] args) {
+		DBFactoryAdapter dbFactoryAdapter = new DBFactoryAdapter();
+		DBAdapter dbAdapter = dbFactoryAdapter.getAdapter(MySQLAdapter.class.getName());
+		dbAdapter.connect();
+		dbAdapter.insert();
+		dbAdapter.retrieve();
+		System.out.println("DAL Testing Done!!");
+	}
+
+}

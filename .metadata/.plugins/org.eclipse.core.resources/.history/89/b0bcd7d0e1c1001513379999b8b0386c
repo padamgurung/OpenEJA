@@ -1,0 +1,11 @@
+package openeja.dp;
+
+public class PostgreSQLAdapter extends DBAdapter {
+	
+	@Override
+	public void connect() {
+		
+		
+	}
+
+}

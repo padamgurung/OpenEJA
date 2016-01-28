@@ -1,0 +1,12 @@
+package OpenEJA.DAL;
+
+public class MySQLAdapter extends DBAdapter {
+
+	@Override
+	public void connect() {
+		
+		
+	}
+	
+	
+}

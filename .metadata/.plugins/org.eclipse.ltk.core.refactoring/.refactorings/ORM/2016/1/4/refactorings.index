@@ -1,0 +1,11 @@
+1453563697969	Encapsulate field 'entities'
+1453565753419	Encapsulate field 'name'
+1453565775660	Encapsulate field 'email'
+1453565780639	Encapsulate field 'mobileNumber'
+1453567101155	Delete element
+1453567675968	Rename type 'TableName'
+1453567870861	Rename type 'PrimaryKey'
+1453567882462	Delete element
+1453567886758	Delete element
+1453573643543	Delete element
+1453573651061	Delete element

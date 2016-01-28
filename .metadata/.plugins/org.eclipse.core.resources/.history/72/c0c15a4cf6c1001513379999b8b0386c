@@ -1,0 +1,7 @@
+package OpenEJA.DAL;
+
+public interface IDBAdapter {
+	
+	void connect();
+	
+}

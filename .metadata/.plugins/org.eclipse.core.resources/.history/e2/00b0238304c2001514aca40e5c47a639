@@ -1,0 +1,14 @@
+package OpenEJA.DAL;
+
+
+import java.util.HashMap;
+
+public interface IDBAdapter {
+	
+	public void connect();
+	public void retrieve();
+	public void insert(String table, HashMap<?, ?> data);
+	public void update();
+	public void delete();
+	
+}

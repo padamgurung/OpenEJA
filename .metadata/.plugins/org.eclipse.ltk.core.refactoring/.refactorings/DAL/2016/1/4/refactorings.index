@@ -1,0 +1,14 @@
+1453554904927	Rename type 'MySQL'
+1453554926878	Rename type 'Oracle'
+1453554936754	Rename type 'PostgresSQL'
+1453554946157	Rename type 'SQLLite'
+1453555874654	Rename type 'PostgresSQLAdapter'
+1453557880777	Delete element
+1453561132050	Rename package 'openeja.dp'
+1453561314110	Rename package 'openeja.dal'
+1453569948532	Delete elements
+1453573666754	Delete element
+1453575207935	Infer generic type arguments
+1453581338446	Rename local variable 'data'
+1453581359468	Rename local variable 'data'
+1453581372046	Rename local variable 'where'

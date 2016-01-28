@@ -1,0 +1,10 @@
+package openeja.dp;
+
+public class OracleAdapter extends DBAdapter {
+
+	@Override
+	public void connect() {
+		
+	}
+	
+}

@@ -1,0 +1,23 @@
+package OpenEJA.App;
+
+import OpenEJA.DAL.DBAdapter;
+import OpenEJA.DAL.DBFactoryAdapter;
+import OpenEJA.DAL.MySQLAdapter;
+
+public class Program {
+
+	public static void main(String[] args) {
+		
+		//DAL Testing
+		DBFactoryAdapter dbFactoryAdapter = new DBFactoryAdapter();
+		DBAdapter dbAdapter = dbFactoryAdapter.getAdapter(MySQLAdapter.class.getName());
+		dbAdapter.connect();
+		dbAdapter.insert();
+		dbAdapter.retrieve();
+		System.out.println("Main Application Testing Done!!");
+		//BO and ORM Testing
+		
+		
+	}
+
+}

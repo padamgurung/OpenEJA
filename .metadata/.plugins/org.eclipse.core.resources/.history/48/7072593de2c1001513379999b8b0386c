@@ -1,0 +1,11 @@
+package openeja.dal;
+
+public class SQLLiteAdapter extends DBAdapter {
+	
+	@Override
+	public void connect() {
+		
+		
+	}
+
+}

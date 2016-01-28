@@ -1,0 +1,11 @@
+package openeja.dp;
+
+public class SQLLiteAdapter implements DBAdapter {
+	
+	@Override
+	public void connect() {
+		
+		
+	}
+
+}

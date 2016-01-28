@@ -1,0 +1,17 @@
+import java.lang.reflect.Field;
+
+import Example.User;
+
+public class Program {
+
+	public static void main(String[] args) {
+		
+		User user = new User();
+		user.setEmail("padam.gurung@outlook.com");
+		System.out.println(user.getEmail());
+		user.addNew();
+		Field[] fields = user.getClass().getFields();
+		System.out.println("ORM Testing Done!!");
+	}
+
+}

@@ -1,0 +1,177 @@
+package OpenEJA.DAL;
+
+import java.sql.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map.Entry;
+
+public abstract class DBAdapter implements IDBAdapter {
+
+	String dbUrl = "jdbc:mysql://localhost:3306/javadb";
+	String user = "javadb";
+	String pass = "Password123";
+
+	Connection myConn;
+	Statement myStmt;
+
+	@Override
+	public void connect() {
+		try {
+
+			myConn = DriverManager.getConnection(dbUrl, user, pass);
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void insert(String table, HashMap<?, ?> newData) {
+		try {
+			StringBuffer fieldNames = new StringBuffer();
+			StringBuffer fieldValues = new StringBuffer();
+			Iterator<?> iterator = newData.entrySet().iterator();
+			while (iterator.hasNext()) {
+				Entry<?, ?> entry = (Entry<?, ?>) iterator.next();
+				fieldNames.append(entry.getKey());
+				fieldValues.append("'").append(entry.getValue()).append("'");
+				if (iterator.hasNext()) {
+					fieldNames.append(",");
+					fieldValues.append(",");
+				}
+			}
+			StringBuilder sql = new StringBuilder();
+			sql.append("INSERT INTO ").append(table).append("( ").append(fieldNames.toString()).append(" )");
+			sql.append("VALUES (").append(fieldValues.toString()).append(" )");
+			System.out.println(sql.toString());
+			myStmt = myConn.createStatement();
+
+			myStmt.executeUpdate(sql.toString());
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void update(String table, HashMap<?, ?> modifiedData, HashMap<?, ?> whereCondition) {
+		try {
+			StringBuffer fieldDetails = new StringBuffer();
+			Iterator<?> dataIterator = modifiedData.entrySet().iterator();
+			while (dataIterator.hasNext()) {
+				Entry<?, ?> entry = (Entry<?, ?>) dataIterator.next();
+				fieldDetails.append(entry.getKey()).append("=").append("'").append(entry.getValue()).append("'");
+
+				if (dataIterator.hasNext()) {
+					fieldDetails.append(",");
+
+				}
+			}
+			StringBuffer whereDetails = new StringBuffer();
+			Iterator<?> whereIterator = whereCondition.entrySet().iterator();
+			while (whereIterator.hasNext()) {
+				Entry<?, ?> entry = (Entry<?, ?>) whereIterator.next();
+				whereDetails.append(entry.getKey()).append("=").append("'").append(entry.getValue()).append("'");
+
+				if (whereIterator.hasNext()) {
+					whereDetails.append(",");
+
+				}
+			}
+			StringBuilder sql = new StringBuilder();
+			sql.append("UPDATE ").append(table).append(" SET ").append(fieldDetails.toString());
+			sql.append(" WHERE ").append(whereDetails.toString());
+
+			System.out.println(sql.toString());
+			myStmt = myConn.createStatement();
+			myStmt.executeUpdate(sql.toString());
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void delete(String table, HashMap<?, ?> whereCondition) {
+		try {
+			
+			StringBuffer whereDetails = new StringBuffer();
+			Iterator<?> whereIterator = whereCondition.entrySet().iterator();
+			while (whereIterator.hasNext()) {
+				Entry<?, ?> entry = (Entry<?, ?>) whereIterator.next();
+				whereDetails.append(entry.getKey()).append("=").append("'").append(entry.getValue()).append("'");
+
+				if (whereIterator.hasNext()) {
+					whereDetails.append(",");
+
+				}
+			}
+			StringBuilder sql = new StringBuilder();
+			sql.append("DELETE FROM ").append(table);
+			sql.append(" WHERE ").append(whereDetails.toString());
+
+			System.out.println(sql.toString());
+			myStmt = myConn.createStatement();
+			myStmt.executeUpdate(sql.toString());
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public ResultSet retrieve(String table, HashMap<?, ?> whereCondition, List<String> columns, String order, int offset, int limit) {
+		try {
+			StringBuffer whereDetails = new StringBuffer();
+			Iterator<?> whereIterator = whereCondition.entrySet().iterator();
+			while (whereIterator.hasNext()) {
+				Entry<?, ?> entry = (Entry<?, ?>) whereIterator.next();
+				whereDetails.append(entry.getKey()).append("=").append("'").append(entry.getValue()).append("'");
+
+				if (whereIterator.hasNext()) {
+					whereDetails.append(",");
+
+				}
+			}
+			StringBuffer columnDetails = new StringBuffer();
+			Iterator<String> columnIterator = columns.iterator();
+			while(columnIterator.hasNext()){
+				columnDetails.append(columnIterator.next().toString());
+				if(columnIterator.hasNext()){
+					columnDetails.append(",");
+				}
+			}
+			StringBuilder sql = new StringBuilder();
+			String fields = columnDetails.toString();
+			if(fields.trim().equals(""))
+				sql.append("SELECT ").append("*").append(" FROM ").append(table);
+			else
+				sql.append("SELECT ").append(fields).append(" FROM ").append(table);
+			if(whereDetails.toString() != "")
+				sql.append(" WHERE ").append(whereDetails.toString());
+			if(!order.trim().equals(""))
+				sql.append(" ORDER BY ").append(order);
+			if(limit > 0)
+				sql.append(" LIMIT ").append(limit);
+			if(offset > 0)
+				sql.append(" OFFSET ").append(offset);
+			
+			
+			myStmt = myConn.createStatement();
+			ResultSet myRs = myStmt.executeQuery(sql.toString());
+			return myRs;
+			
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		return null;
+
+	}
+
+}

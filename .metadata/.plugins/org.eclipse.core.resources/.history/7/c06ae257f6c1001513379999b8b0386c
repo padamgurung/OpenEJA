@@ -1,0 +1,10 @@
+package OpenEJA.DAL;
+
+public class OracleAdapter extends DBAdapter {
+
+	@Override
+	public void connect() {
+		
+	}
+	
+}

@@ -1,0 +1,20 @@
+package openeja.dp;
+
+public class DBFactoryAdapter {
+	
+	public DBAdapter getAdapter(String adapterType) {
+		
+		if(adapterType == null) {
+			return null;
+		}
+		
+		try {
+			
+		}
+		catch (Throw e) {
+			
+		}
+		
+	}
+
+}
