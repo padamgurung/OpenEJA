@@ -17,7 +17,6 @@ public class Program {
 	public static void main(String[] args) {
 
 		//DAL Testing	
-		
 		/*DBAdapter dbAdapter = DBFactoryAdapter.getDBAdapter();	
 		HashMap<String, String> newData = new HashMap<String, String>();
 		newData.put("name", "Padam Raj Gurung");

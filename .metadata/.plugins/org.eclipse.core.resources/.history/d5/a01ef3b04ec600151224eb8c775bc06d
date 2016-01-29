@@ -17,8 +17,7 @@ public class Program {
 	public static void main(String[] args) {
 
 		//DAL Testing	
-		
-		/*DBAdapter dbAdapter = DBFactoryAdapter.getDBAdapter();	
+		DBAdapter dbAdapter = DBFactoryAdapter.getDBAdapter();	
 		HashMap<String, String> newData = new HashMap<String, String>();
 		newData.put("name", "Padam Raj Gurung");
 		newData.put("email", "padam.gurung@outlook.com");
@@ -45,8 +44,7 @@ public class Program {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
-		
+		}
 		//BO and ORM Testing
 		
 		User user = new User("User");

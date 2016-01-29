@@ -16,8 +16,6 @@ public abstract class Entity implements IEntity {
 	@Override
 	public void add(){
 	//parse the annotation and add	
-		System.out.println("Entity Added Called");
-		System.out.println(this.getClass().getName());
 	
 	}
 	
