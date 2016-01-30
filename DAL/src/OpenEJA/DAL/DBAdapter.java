@@ -169,5 +169,35 @@ public abstract class DBAdapter implements IDBAdapter {
 		return null;
 
 	}
+	@Override
+	public ResultSet retrieve(String table, HashMap<?, ?> whereCondition) {
+		try {
+			StringBuffer whereDetails = new StringBuffer();
+			Iterator<?> whereIterator = whereCondition.entrySet().iterator();
+			while (whereIterator.hasNext()) {
+				Entry<?, ?> entry = (Entry<?, ?>) whereIterator.next();
+				whereDetails.append(entry.getKey()).append("=").append("'").append(entry.getValue()).append("'");
+
+				if (whereIterator.hasNext()) {
+					whereDetails.append(",");
+
+				}
+			}
+			
+			StringBuilder sql = new StringBuilder();		
+			sql.append("SELECT ").append("*").append(" FROM ").append(table);			
+			if(whereDetails.toString() != "")
+				sql.append(" WHERE ").append(whereDetails.toString());			
+			myStmt = myConn.createStatement();
+			ResultSet myRs = myStmt.executeQuery(sql.toString());
+			return myRs;
+			
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		return null;
+
+	}
 
 }
