@@ -107,7 +107,7 @@ public class EntityGenerator {
 
 			String columnName = LowerCamelCase(ed.getColumnName());
 			if (ed.getDataType().equalsIgnoreCase("int"))
-				code.append("\tpublic Integer " + columnName + ";")
+				code.append("\tpublic "+ ed.getDataType() + " " + columnName + ";")
 						.append(System.lineSeparator() + System.lineSeparator());
 			if (ed.getDataType().equalsIgnoreCase("varchar") || ed.getDataType().equalsIgnoreCase("text"))
 				code.append("\tpublic String " + columnName + ";")

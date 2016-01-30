@@ -3,8 +3,8 @@ package OpenEJA.App;
 
 
 
-//import OpenEJA.BO.Javadb.Test;
-import OpenEJA.Generate.EntityGenerator;
+import OpenEJA.BO.Javadb.Test;
+//import OpenEJA.Generate.EntityGenerator;
 
 
 
@@ -13,13 +13,20 @@ public class Program {
 	public static void main(String[] args) {
 
 	
-		EntityGenerator e = new EntityGenerator();
-		//e.generateEntity("test","javadb");
-		e.generateAllEntities("javadb");
-		/*Test test = new Test();
-		test.id = 1;	
+	/*	EntityGenerator e = new EntityGenerator();
+		e.generateEntity("test","javadb");
+		e.generateAllEntities("javadb");*/
+		Test test = new Test();
+		test.id = 2;	
 		test.load();
-		System.out.println(test.name);*/
+		System.out.println(test.addresss );
+		System.out.println(test.createdDate );
+		System.out.println(test.email );
+		System.out.println(test.id );
+		System.out.println(test.mobile );
+		System.out.println(test.name );
+		System.out.println(test.price );
+		
 		
 		
 		
