@@ -1,0 +1,48 @@
+package OpenEJA.Generate;
+
+import java.sql.ResultSet;
+import java.util.LinkedList;
+import java.util.List;
+
+import OpenEJA.DAL.*;
+
+public class EntityGenerator {
+	
+	private List<String> entityVariables;
+	private String entityClass;
+	private String entityBaseClass;
+	private List<String> primaryKeys;
+	private List<String> foreignKeys;
+	private List<String> autoIncrementKeys;
+	private DBAdapter dba;
+	
+	public EntityGenerator(){
+		this.entityVariables = new LinkedList<String>();
+		this.entityClass = "";
+		this.entityBaseClass = "Entity";
+		this.primaryKeys = new LinkedList<String>();
+		this.foreignKeys = new LinkedList<String>();
+		this.autoIncrementKeys = new LinkedList<String>();
+		this.dba = DBFactoryAdapter.getDBAdapter();
+	}
+
+	public void getEntity(String tableName){
+		ResultSet rs = this.dba.tableDetail(tableName);
+	}
+	
+	public void getAllEntities(String databaseName){
+		
+	}
+	private void prepareKeys(){
+		
+	}
+	private void getCode(){
+		
+	}
+	private void createClassFile(String code){
+		
+	}
+	private void resetVariables(){
+		
+	}
+}

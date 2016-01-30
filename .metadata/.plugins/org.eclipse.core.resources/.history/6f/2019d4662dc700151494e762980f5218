@@ -1,0 +1,16 @@
+package OpenEJA.DAL;
+
+import java.sql.ResultSet;
+
+public class MySQLAdapter extends DBAdapter {	
+
+	public ResultSet tableDetail(String tableName){
+		
+		StringBuilder sql = new StringBuilder();		
+		sql.append("DESC ").append(tableName);			
+		
+		myStmt = myConn.createStatement();
+		ResultSet myRs = myStmt.executeQuery(sql.toString());
+		return myRs;
+	}
+}

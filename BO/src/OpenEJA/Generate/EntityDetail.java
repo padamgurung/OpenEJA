@@ -1,0 +1,79 @@
+package OpenEJA.Generate;
+
+public class EntityDetail {
+	
+	private String columnName;
+	private String columnDefault;
+	private boolean isNullable;
+	private String dataType;
+	private String charMaxLength;
+	private String columnKey;
+	private String extra;
+	
+	public EntityDetail(){
+		this.columnName = "";
+		this.columnDefault = "";
+		this.isNullable = false;
+		this.dataType = "varchar";
+		this.charMaxLength = "";
+		this.columnKey = "";
+		this.extra = "";
+	}
+
+	public String getColumnName() {
+		return columnName;
+	}
+
+	public void setColumnName(String columnName) {
+		this.columnName = columnName;
+	}
+
+	public String getColumnDefault() {
+		return columnDefault;
+	}
+
+	public void setColumnDefault(String columnDefault) {
+		this.columnDefault = columnDefault;
+	}
+
+	public boolean isNullable() {
+		return isNullable;
+	}
+
+	public void setNullable(boolean isNullable) {
+		this.isNullable = isNullable;
+	}
+
+	public String getDataType() {
+		return dataType;
+	}
+
+	public void setDataType(String dataType) {
+		this.dataType = dataType;
+	}
+
+	public String getCharMaxLength() {
+		return charMaxLength;
+	}
+
+	public void setCharMaxLength(String charMaxLength) {
+		this.charMaxLength = charMaxLength;
+	}
+
+	public String getColumnKey() {
+		return columnKey;
+	}
+
+	public void setColumnKey(String columnKey) {
+		this.columnKey = columnKey;
+	}
+
+	public String getExtra() {
+		return extra;
+	}
+
+	public void setExtra(String extra) {
+		this.extra = extra;
+	}
+
+}

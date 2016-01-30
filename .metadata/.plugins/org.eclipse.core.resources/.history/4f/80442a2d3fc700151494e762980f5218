@@ -1,0 +1,21 @@
+package OpenEJA.Generate;
+
+public class EntityDetail {
+	
+	private String columnName;
+	private String columnDefault;
+	private boolean isNullable;
+	private String dataType;
+	private String charMaxLength;
+	private String columnKey;
+	private String extra;
+	
+	public EntityDetail(){
+		this.columnName = "";
+		this.columnDefault = "";
+		this.isNullable = false;
+		this.dataType = "varchar";
+		this.charMaxLength = "";
+	}
+
+}

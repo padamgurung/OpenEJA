@@ -4,11 +4,11 @@ import java.util.LinkedList;
 
 public abstract class EntityManager implements IEntity{
 	
-	private final String name;
+	
 	private final LinkedList<IEntity> entities;
 	
-	public EntityManager(String name) {
-		this.name = name;
+	public EntityManager() {
+		
 		this.entities = new LinkedList<IEntity>();
 	}
 	

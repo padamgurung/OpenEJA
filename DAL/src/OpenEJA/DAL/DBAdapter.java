@@ -8,8 +8,8 @@ import java.util.Map.Entry;
 
 public abstract class DBAdapter implements IDBAdapter {
 
-	private Connection myConn;
-	private Statement myStmt;
+	protected Connection myConn;
+	protected Statement myStmt;
 
 	@Override
 	public void connect(String connectionString, String username, String password) {
@@ -95,7 +95,7 @@ public abstract class DBAdapter implements IDBAdapter {
 	@Override
 	public void delete(String table, HashMap<?, ?> whereCondition) {
 		try {
-			
+
 			StringBuffer whereDetails = new StringBuffer();
 			Iterator<?> whereIterator = whereCondition.entrySet().iterator();
 			while (whereIterator.hasNext()) {
@@ -121,7 +121,8 @@ public abstract class DBAdapter implements IDBAdapter {
 	}
 
 	@Override
-	public ResultSet retrieve(String table, HashMap<?, ?> whereCondition, List<String> columns, String order, int offset, int limit) {
+	public ResultSet retrieve(String table, HashMap<?, ?> whereCondition, List<String> columns, String order,
+			int offset, int limit) {
 		try {
 			StringBuffer whereDetails = new StringBuffer();
 			Iterator<?> whereIterator = whereCondition.entrySet().iterator();
@@ -136,32 +137,31 @@ public abstract class DBAdapter implements IDBAdapter {
 			}
 			StringBuffer columnDetails = new StringBuffer();
 			Iterator<String> columnIterator = columns.iterator();
-			while(columnIterator.hasNext()){
+			while (columnIterator.hasNext()) {
 				columnDetails.append(columnIterator.next().toString());
-				if(columnIterator.hasNext()){
+				if (columnIterator.hasNext()) {
 					columnDetails.append(",");
 				}
 			}
 			StringBuilder sql = new StringBuilder();
 			String fields = columnDetails.toString();
-			if(fields.trim().equals(""))
+			if (fields.trim().equals(""))
 				sql.append("SELECT ").append("*").append(" FROM ").append(table);
 			else
 				sql.append("SELECT ").append(fields).append(" FROM ").append(table);
-			if(whereDetails.toString() != "")
+			if (whereDetails.toString() != "")
 				sql.append(" WHERE ").append(whereDetails.toString());
-			if(!order.trim().equals(""))
+			if (!order.trim().equals(""))
 				sql.append(" ORDER BY ").append(order);
-			if(limit > 0)
+			if (limit > 0)
 				sql.append(" LIMIT ").append(limit);
-			if(offset > 0)
+			if (offset > 0)
 				sql.append(" OFFSET ").append(offset);
-			
-			
+
 			myStmt = myConn.createStatement();
 			ResultSet myRs = myStmt.executeQuery(sql.toString());
 			return myRs;
-			
+
 		} catch (SQLException e) {
 
 			e.printStackTrace();
@@ -169,6 +169,7 @@ public abstract class DBAdapter implements IDBAdapter {
 		return null;
 
 	}
+
 	@Override
 	public ResultSet retrieve(String table, HashMap<?, ?> whereCondition) {
 		try {
@@ -183,17 +184,56 @@ public abstract class DBAdapter implements IDBAdapter {
 
 				}
 			}
-			
-			StringBuilder sql = new StringBuilder();		
-			sql.append("SELECT ").append("*").append(" FROM ").append(table);			
-			if(whereDetails.toString() != "")
-				sql.append(" WHERE ").append(whereDetails.toString());			
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT ").append("*").append(" FROM ").append(table);
+			if (whereDetails.toString() != "")
+				sql.append(" WHERE ").append(whereDetails.toString());
 			myStmt = myConn.createStatement();
 			ResultSet myRs = myStmt.executeQuery(sql.toString());
 			return myRs;
-			
+
 		} catch (SQLException e) {
 
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public ResultSet tableDetail(String tableName, String databaseName) {
+
+		StringBuilder sql = new StringBuilder();
+		// select column_name, column_default, is_nullable,
+		// data_type,character_maximum_length, column_key, extra from
+		// information_schema.columns where table_name='test' and
+		// table_schema='javadb';
+		sql.append(
+				"select column_name, column_default, is_nullable, data_type,character_maximum_length, column_key, extra from information_schema.columns ");
+		sql.append(" where table_name='").append(tableName).append("' and table_schema='").append(databaseName)
+				.append("'");
+
+		try {
+			myStmt = myConn.createStatement();
+			ResultSet myRs = myStmt.executeQuery(sql.toString());
+			return myRs;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+
+	}
+
+	public ResultSet listTables(String databaseName) {
+
+		StringBuilder sql = new StringBuilder();
+		sql.append("select distinct(table_name) from information_schema.columns");
+		sql.append(" where table_schema='").append(databaseName).append("'");
+
+		try {
+			myStmt = myConn.createStatement();
+			ResultSet myRs = myStmt.executeQuery(sql.toString());
+			return myRs;
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;

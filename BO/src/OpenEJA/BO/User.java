@@ -19,46 +19,10 @@ public class User extends Entity {
 	@Column(name = "mobile_number")
 	public String mobileNumber;
 	
-	public User(String name) {
-		super(name);
+	public User() {	
 		this.id = 0;
 		this.name = "";
 		this.email = "";
 		this.mobileNumber = "";
 	}
-
-	public String getName() {
-		return name;
-	}
-
-
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-
-
-
-	public String getEmail() {
-		return email;
-	}
-
-
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-
-
-	public String getMobileNumber() {
-		return mobileNumber;
-	}
-
-
-
-	public void setMobileNumber(String mobileNumber) {
-		this.mobileNumber = mobileNumber;
-	}
-
 }

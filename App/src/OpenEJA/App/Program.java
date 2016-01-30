@@ -1,6 +1,10 @@
 package OpenEJA.App;
 
-import OpenEJA.BO.User;
+
+
+
+//import OpenEJA.BO.Javadb.Test;
+import OpenEJA.Generate.EntityGenerator;
 
 
 
@@ -8,15 +12,15 @@ public class Program {
 
 	public static void main(String[] args) {
 
-			
-		//BO and ORM Testing
+	
+		EntityGenerator e = new EntityGenerator();
+		//e.generateEntity("test","javadb");
+		e.generateAllEntities("javadb");
+		/*Test test = new Test();
+		test.id = 1;	
+		test.load();
+		System.out.println(test.name);*/
 		
-		User user = new User("User");
-		user.id = 34;	
-		user.load();
-		System.out.println(user.email + ";" + user.name + ";" + user.mobileNumber + ";" + user.id);
-		
-		System.out.println("ORM Testing Done!!");
 		
 		
 	}

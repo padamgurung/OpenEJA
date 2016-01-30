@@ -1,0 +1,76 @@
+package OpenEJA.Generate;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
+
+import OpenEJA.DAL.*;
+
+public class EntityGenerator {
+
+	private List<EntityDetail> entityDetailList;	
+	private DBAdapter dba;
+	private String tableName;
+	
+	public EntityGenerator(){
+		this.entityDetailList = new LinkedList<EntityDetail>();		
+		this.dba = DBFactoryAdapter.getDBAdapter();
+		this.tableName = "";
+	}
+
+	public void generateEntity(String tableName, String databaseName){
+		ResultSet rs = this.dba.tableDetail(tableName, databaseName);
+		this.prepareKeys(rs);
+		this.getCode();
+	}
+	
+	public void getAllEntities(String databaseName){
+		
+	}
+	private void prepareKeys(ResultSet rs){
+		try {			
+			while(rs.next()){				
+				EntityDetail entityDetail = new EntityDetail();
+				entityDetail.setColumnName(rs.getString("column_name"));
+				entityDetail.setColumnDefault(rs.getString("column_default"));
+				if(rs.getString("is_nullable").equalsIgnoreCase("YES"))
+					entityDetail.setNullable(true);
+				else
+					entityDetail.setNullable(false);
+				entityDetail.setColumnDefault(rs.getString("data_type"));
+				entityDetail.setCharMaxLength(rs.getString("character_maximum_length"));
+				entityDetail.setColumnKey(rs.getString("column_key"));
+				entityDetail.setExtra(rs.getString("extra"));
+				this.entityDetailList.add(entityDetail);
+				
+			}
+			for(EntityDetail ed : entityDetailList){
+				System.out.println(ed.getColumnName()+":"+ed.getColumnDefault()+":"+ed.isNullable()+":"+ed.getDataType()+":"+ed.getCharMaxLength()+":"+ed.getColumnKey()+":"+ed.getExtra());
+			}
+			
+		} 
+		catch (SQLException e) {			
+			e.printStackTrace();
+		}
+		
+	}
+	private void getCode(){
+		StringBuilder code = new StringBuilder();
+		code.append("package OpenEJA.BO;");
+		code.append(System.lineSeparator());
+		code.append(System.lineSeparator());
+		code.append("import OpenEJA.Annotation.*;");
+		code.append(System.lineSeparator());
+		code.append("import OpenEJA.ORM.Entity;");
+		code.append(System.lineSeparator());
+		System.out.println(code.toString());
+		
+	}
+	private void createClassFile(String code){
+		
+	}
+	private void resetVariables(){
+		
+	}
+}

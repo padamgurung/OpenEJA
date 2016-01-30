@@ -1,0 +1,16 @@
+package OpenEJA.Generate;
+
+import java.util.List;
+
+public class EntityGenerator {
+	
+	private List<String> entityVariables;
+	private String entityClass;
+	private String entityBaseClass;
+	private List<String> primaryKeys;
+	private List<String> foreignKeys;
+	private List<String> autoIncrementKeys;
+	private DBAdapter dba;
+	
+
+}
