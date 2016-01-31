@@ -4,7 +4,7 @@ package OpenEJA.App;
 
 
 import OpenEJA.BO.Javadb.Test;
-import OpenEJA.Generate.EntityGenerator;
+//import OpenEJA.Generate.EntityGenerator;
 
 
 
@@ -13,8 +13,8 @@ public class Program {
 	public static void main(String[] args) {
 
 	
-		EntityGenerator e = new EntityGenerator();
-	/*	e.generateEntity("test","javadb");
+	/*	EntityGenerator e = new EntityGenerator();
+		e.generateEntity("test","javadb");
 		e.generateAllEntities("javadb");*/
 		Test test = new Test();
 		test.id = 2;	

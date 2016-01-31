@@ -25,7 +25,7 @@ public class DBFactoryAdapter {
 			try {
 				dba = (DBAdapter) Class.forName(adapterType).newInstance();
 			} catch (Throwable e) {
-				System.err.println("DBFactoryAdapter Instantiation Failed");
+				System.err.println("Instantiation Error");
 			}
 			dba.connect(connectionString, username, password);
 		}

@@ -24,8 +24,12 @@ public class DBFactoryAdapter {
 		if (dba == null) {
 			try {
 				dba = (DBAdapter) Class.forName(adapterType).newInstance();
-			} catch (Throwable e) {
-				System.err.println("DBFactoryAdapter Instantiation Failed");
+			} catch (InstantiationException e) {
+				System.err.println("Instantiation Error");
+			} catch (IllegalAccessException e) {
+				System.err.println("Illegal Access");
+			} catch (ClassNotFoundException e) {
+				System.err.println("Class not found");
 			}
 			dba.connect(connectionString, username, password);
 		}
