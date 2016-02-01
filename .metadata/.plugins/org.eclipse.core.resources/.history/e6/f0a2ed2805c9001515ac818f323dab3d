@@ -1,0 +1,5 @@
+package openeja.annotation;
+
+public @interface OneToMany {
+
+}

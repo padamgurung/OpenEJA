@@ -108,16 +108,16 @@ public class EntityGenerator {
 
 			String columnName = Convert.toLowerCamelCase(ed.getColumnName());
 			if (ed.getDataType().equalsIgnoreCase("int"))
-				code.append("\tpublic "+ ed.getDataType() + " " + columnName + ";")
+				code.append("\tprivate "+ ed.getDataType() + " " + columnName + ";")
 						.append(System.lineSeparator() + System.lineSeparator());
 			if (ed.getDataType().equalsIgnoreCase("varchar") || ed.getDataType().equalsIgnoreCase("text"))
-				code.append("\tpublic String " + columnName + ";")
+				code.append("\tprivate String " + columnName + ";")
 						.append(System.lineSeparator() + System.lineSeparator());
 			if (ed.getDataType().equalsIgnoreCase("datetime") || ed.getDataType().equalsIgnoreCase("date"))
-				code.append("\tpublic String " + columnName + ";")
+				code.append("\tprivate String " + columnName + ";")
 						.append(System.lineSeparator() + System.lineSeparator());
 			if (ed.getDataType().equalsIgnoreCase("double") || ed.getDataType().equalsIgnoreCase("float"))
-				code.append("\tpublic " + ed.getDataType() + " " + columnName + ";")
+				code.append("\tprivate " + ed.getDataType() + " " + columnName + ";")
 						.append(System.lineSeparator() + System.lineSeparator());
 
 		}
@@ -140,6 +140,55 @@ public class EntityGenerator {
 		code.append(System.lineSeparator()).append("\t}");
 		code.append(System.lineSeparator());
 
+		for (EntityDetail ed : entityDetailList) {
+			String columnName = Convert.toLowerCamelCase(ed.getColumnName());
+			if (ed.getDataType().equalsIgnoreCase("int")){
+				code.append("\tpublic void set").append(Convert.toUpperCamelCase(ed.getColumnName()));
+				code.append("(").append(ed.getDataType()).append(" "+columnName+"){").append(System.lineSeparator());
+				code.append("\t\tthis.").append(columnName).append(" = "+columnName+";").append(System.lineSeparator());
+				code.append("\t}").append(System.lineSeparator());
+				
+				code.append("\tpublic ").append(ed.getDataType()).append(" get").append(Convert.toUpperCamelCase(ed.getColumnName()));
+				code.append("(){").append(System.lineSeparator());
+				code.append("\t\treturn ").append(columnName).append(";").append(System.lineSeparator());
+				code.append("\t}").append(System.lineSeparator());
+			}			
+			if (ed.getDataType().equalsIgnoreCase("varchar") || ed.getDataType().equalsIgnoreCase("text")){
+				code.append("\tpublic void set").append(Convert.toUpperCamelCase(ed.getColumnName()));
+				code.append("(").append("String").append(" "+columnName+"){").append(System.lineSeparator());
+				code.append("\t\tthis.").append(columnName).append(" = "+columnName+";").append(System.lineSeparator());
+				code.append("\t}").append(System.lineSeparator());
+				
+				code.append("\tpublic ").append("String").append(" get").append(Convert.toUpperCamelCase(ed.getColumnName()));
+				code.append("(){").append(System.lineSeparator());
+				code.append("\t\treturn ").append(columnName).append(";").append(System.lineSeparator());
+				code.append("\t}").append(System.lineSeparator());
+			}			
+			if (ed.getDataType().equalsIgnoreCase("datetime") || ed.getDataType().equalsIgnoreCase("date")){
+				code.append("\tpublic void set").append(Convert.toUpperCamelCase(ed.getColumnName()));
+				code.append("(").append("String").append(" "+columnName+"){").append(System.lineSeparator());
+				code.append("\t\tthis.").append(columnName).append(" = "+columnName+";").append(System.lineSeparator());
+				code.append("\t}").append(System.lineSeparator());
+				
+				code.append("\tpublic ").append("String").append(" get").append(Convert.toUpperCamelCase(ed.getColumnName()));
+				code.append("(){").append(System.lineSeparator());
+				code.append("\t\treturn ").append(columnName).append(";").append(System.lineSeparator());
+				code.append("\t}").append(System.lineSeparator());
+			}			
+			if (ed.getDataType().equalsIgnoreCase("double") || ed.getDataType().equalsIgnoreCase("float")){
+				code.append("\tpublic void set").append(Convert.toUpperCamelCase(ed.getColumnName()));
+				code.append("(").append(ed.getDataType()).append(" "+columnName+"){").append(System.lineSeparator());
+				code.append("\t\tthis.").append(columnName).append(" = "+columnName+";").append(System.lineSeparator());
+				code.append("\t}").append(System.lineSeparator());
+				
+				code.append("\tpublic ").append(ed.getDataType()).append(" get").append(Convert.toUpperCamelCase(ed.getColumnName()));
+				code.append("(){").append(System.lineSeparator());
+				code.append("\t\treturn ").append(columnName).append(";").append(System.lineSeparator());
+				code.append("\t}").append(System.lineSeparator());
+			}
+		
+		}
+		
 		code.append("}").append(System.lineSeparator());	
 		return code.toString().replaceAll("'", "\"");
 
