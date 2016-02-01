@@ -11,6 +11,7 @@ import java.util.*;
 import java.util.Date;
 
 import openeja.dal.*;
+import openeja.utils.Convert;
 
 public class EntityGenerator {
 
@@ -91,7 +92,7 @@ public class EntityGenerator {
 		code.append(System.lineSeparator());
 		code.append("@Table(name = '").append(tableName).append("')");
 		code.append(System.lineSeparator());
-		code.append("public class ").append(UpperCamelCase(tableName)).append(" extends Entity {")
+		code.append("public class ").append(Convert.toUpperCamelCase(tableName)).append(" extends Entity {")
 				.append(System.lineSeparator());
 		code.append(System.lineSeparator());
 		for (EntityDetail ed : entityDetailList) {
@@ -105,7 +106,7 @@ public class EntityGenerator {
 				code.append(", length = '").append(ed.getCharMaxLength()).append("'");
 			code.append(")").append(System.lineSeparator());
 
-			String columnName = LowerCamelCase(ed.getColumnName());
+			String columnName = Convert.toLowerCamelCase(ed.getColumnName());
 			if (ed.getDataType().equalsIgnoreCase("int"))
 				code.append("\tpublic "+ ed.getDataType() + " " + columnName + ";")
 						.append(System.lineSeparator() + System.lineSeparator());
@@ -120,12 +121,12 @@ public class EntityGenerator {
 						.append(System.lineSeparator() + System.lineSeparator());
 
 		}
-		code.append("\tpublic ").append(UpperCamelCase(tableName)).append("(){");
+		code.append("\tpublic ").append(Convert.toUpperCamelCase(tableName)).append("(){");
 		code.append(System.lineSeparator());
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new java.util.Date();
 		for (EntityDetail ed : entityDetailList) {
-			String columnName = LowerCamelCase(ed.getColumnName());
+			String columnName = Convert.toLowerCamelCase(ed.getColumnName());
 			if (ed.getDataType().equalsIgnoreCase("int"))
 				code.append("\t\tthis.").append(columnName).append(" = 0;").append(System.lineSeparator());
 			if (ed.getDataType().equalsIgnoreCase("varchar") || ed.getDataType().equalsIgnoreCase("text"))
@@ -149,7 +150,7 @@ public class EntityGenerator {
 		if (!dir.exists())
 			dir.mkdirs();
 		File file = new File("../bo/src/openeja/bo/" + this.databaseName.toLowerCase() + "/"
-				+ UpperCamelCase(this.tableName) + ".java");
+				+ Convert.toUpperCamelCase(this.tableName) + ".java");
 		if (!file.exists()) {
 			try {
 				file.createNewFile();
@@ -177,27 +178,4 @@ public class EntityGenerator {
 	private void resetVariables() {
 		this.entityDetailList.clear();
 	}
-
-	public String UpperCamelCase(String s) {
-		String[] parts = s.split("_");
-		String camelCaseString = "";
-		for (String part : parts) {
-			camelCaseString = camelCaseString + toProperCase(part);
-		}
-		return camelCaseString;
-	}
-
-	public String LowerCamelCase(String s) {
-		String[] parts = s.split("_");
-		String camelCaseString = "";
-		for (String part : parts) {
-			camelCaseString = camelCaseString + toProperCase(part);
-		}
-		return camelCaseString.substring(0, 1).toLowerCase() + camelCaseString.substring(1);
-	}
-
-	public String toProperCase(String s) {
-		return s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
-	}
-
 }

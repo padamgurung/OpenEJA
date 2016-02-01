@@ -1,0 +1,27 @@
+package openeja.utils;
+
+public class Convert {
+	
+	public String UpperCamelCase(String s) {
+		String[] parts = s.split("_");
+		String camelCaseString = "";
+		for (String part : parts) {
+			camelCaseString = camelCaseString + part.substring(0, 1).toUpperCase() + part.substring(1).toLowerCase();;
+		}
+		return camelCaseString;
+	}
+
+	public String LowerCamelCase(String s) {
+		String[] parts = s.split("_");
+		String camelCaseString = "";
+		for (String part : parts) {
+			camelCaseString = camelCaseString + toProperCase(part);
+		}
+		return camelCaseString.substring(0, 1).toLowerCase() + camelCaseString.substring(1);
+	}
+
+	public String toProperCase(String s) {
+		return s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
+	}
+
+}
