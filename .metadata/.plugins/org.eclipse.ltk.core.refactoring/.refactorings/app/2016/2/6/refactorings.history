@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;OpenEJA.App&apos; to &apos;openeja.app&apos;&#x0A;- Original project: &apos;App&apos;&#x0A;- Original element: &apos;App/src/OpenEJA.App&apos;&#x0A;- Renamed element: &apos;App/src/openeja.app&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;OpenEJA.App&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;OpenEJA.App" name="openeja.app" qualified="false" references="true" stamp="1454342700542" textual="false" version="1.0"/>
+</session>
