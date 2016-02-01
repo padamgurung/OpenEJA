@@ -208,11 +208,38 @@ public abstract class DBAdapter implements IDBAdapter {
 		// information_schema.columns where table_name='test' and
 		// table_schema='javadb';
 		sql.append(
-				"select column_name, column_default, is_nullable, data_type,character_maximum_length, column_key, extra from information_schema.columns ");
-		sql.append(" where table_name='").append(tableName).append("' and table_schema='").append(databaseName)
+				"SELECT column_name, column_default, is_nullable, data_type,character_maximum_length, column_key, extra from information_schema.columns ");
+		sql.append(" WHERE table_name='").append(tableName).append("' AND table_schema='").append(databaseName)
 				.append("'");
 
 		try {
+			System.out.println(sql.toString());
+			myStmt = myConn.createStatement();
+			ResultSet myRs = myStmt.executeQuery(sql.toString());
+			return myRs;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+
+	}
+	public ResultSet referencedTableDetail(String tableName, String databaseName) {
+
+		StringBuilder sql = new StringBuilder();
+		/*SELECT table_name, column_name, referenced_table_name, referenced_column_name
+		FROM information_schema.key_column_usage
+		WHERE table_name =  'employees'
+		AND table_schema =  'javadb'
+		AND referenced_table_name IS NOT NULL 
+		LIMIT 0 , 30*/
+		sql.append(
+				"SELECT table_name, column_name, referenced_table_name, referenced_column_name FROM information_schema.key_column_usage ");
+		sql.append(" WHERE table_name='").append(tableName).append("' AND table_schema='").append(databaseName)
+				.append("'");
+		sql.append(" AND referenced_table_name IS NOT NULL ");
+
+		try {
+			System.out.println(sql.toString());
 			myStmt = myConn.createStatement();
 			ResultSet myRs = myStmt.executeQuery(sql.toString());
 			return myRs;

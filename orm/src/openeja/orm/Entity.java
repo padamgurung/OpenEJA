@@ -96,7 +96,80 @@ public abstract class Entity implements IEntity {
 
 		}
 	}
+	public void findById(String id) {
+		Class<?> entityClass = this.getClass();
+		Table tableAnnotation = (Table) entityClass.getAnnotation(Table.class);
+		String tableName = tableAnnotation.name();
 
+		Field[] fields = entityClass.getDeclaredFields();
+
+		boolean isAnnotationId;
+		boolean isAnnotationColumn;
+
+		HashMap<String, String> loadCondition = new HashMap<String, String>();
+		HashMap<String, String> values = new HashMap<String, String>();
+
+		for (Field field : fields) {
+			field.setAccessible(true);
+			try {
+
+				isAnnotationColumn = field.isAnnotationPresent(Column.class);
+				isAnnotationId = field.isAnnotationPresent(Id.class);
+				if (!isAnnotationColumn)
+					continue;
+				Column columnAnnotation = (Column) field.getAnnotation(Column.class);
+
+				if (isAnnotationId) {
+					loadCondition.put(columnAnnotation.name(), id);
+				}
+
+			} catch (Throwable ex) {
+				System.err.println(ex);
+			}
+		}
+
+		ResultSet rs = dba.retrieve(tableName, loadCondition);
+
+		try {
+			if (rs.next()) {
+				ResultSetMetaData rsmd = rs.getMetaData();
+				int columnCount = rsmd.getColumnCount();
+				for (int i = 1; i <= columnCount; i++) {
+					values.put(rsmd.getColumnName(i), rs.getObject(i).toString());
+				}
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		for (Field field : fields) {
+			try {
+
+				Column columnAnnotation = null;
+				columnAnnotation = (Column) field.getAnnotation(Column.class);
+				Object value = values.get(columnAnnotation.name());
+
+				if (columnAnnotation.type().equalsIgnoreCase("varchar")
+						|| columnAnnotation.type().equalsIgnoreCase("text")) {
+					field.set(this, value);
+				} else if (columnAnnotation.type().equals("int")) {
+					field.setInt(this, Integer.parseInt(values.get(columnAnnotation.name())));
+				} else if (columnAnnotation.type().equalsIgnoreCase("double")) {
+					field.setDouble(this, Double.parseDouble(values.get(columnAnnotation.name())));
+				} else if (columnAnnotation.type().equalsIgnoreCase("float")) {
+					field.setDouble(this, Float.parseFloat(values.get(columnAnnotation.name())));
+				} else if (columnAnnotation.type().equalsIgnoreCase("datetime")
+						|| columnAnnotation.type().equalsIgnoreCase("date")) {
+					field.set(this, value);
+				}
+
+			} catch (Throwable ex) {
+				System.err.println(ex);
+			}
+
+		}
+	}
 	@Override
 	public void add() {
 

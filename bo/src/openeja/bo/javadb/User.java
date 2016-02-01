@@ -14,6 +14,7 @@ public class User extends Entity {
 	@Column(name = "name", type = "varchar", length = "256")
 	private String name;
 
+	@ManyToOne
 	@Column(name = "email", type = "varchar", length = "256")
 	private String email;
 

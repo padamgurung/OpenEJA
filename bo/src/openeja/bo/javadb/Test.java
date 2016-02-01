@@ -14,6 +14,7 @@ public class Test extends Entity {
 	@Column(name = "name", type = "varchar", length = "50")
 	private String name;
 
+	@ManyToOne
 	@Column(name = "email", type = "varchar", length = "256")
 	private String email;
 
@@ -35,7 +36,7 @@ public class Test extends Entity {
 		this.email = "";
 		this.mobile = "";
 		this.addresss = "";
-		this.createdDate = "2016/02/01 23:45:03";
+		this.createdDate = "2016/02/02 01:47:52";
 		this.price = 0.0;
 
 	}

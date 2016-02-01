@@ -3,6 +3,7 @@ package openeja.app;
 
 
 
+import openeja.bo.javadb.Employees;
 import openeja.bo.javadb.Test;
 import openeja.generate.EntityGenerator;
 
@@ -14,20 +15,20 @@ public class Program {
 
 	
 		EntityGenerator e = new EntityGenerator();
-		e.generateEntity("test","javadb");
+		//e.generateEntity("test","javadb");
 		e.generateAllEntities("javadb");
 		Test test = new Test();
-		test.setId(8);
-		test.setAddresss("Sundhara");
+		test.setId(9);
+		/*test.setAddresss("Sundhara");
 		test.setCreatedDate("2016-12-12");
 		test.setEmail("padam.gurung@outook.com");
 		test.setMobile("9843740777");
 		test.setName("Padam Raj Gurung");
 		test.setPrice(12.12);
-	 //test.add();
+	 test.add();
 		//test.update();
-		test.remove();
-		//test.load();
+		//test.remove();*/
+		test.load();
 		System.out.println(test.getAddresss());
 		System.out.println(test.getCreatedDate());
 		System.out.println(test.getEmail());
@@ -36,8 +37,12 @@ public class Program {
 		System.out.println(test.getName());
 		System.out.println(test.getPrice());
 		
+		Employees employee = new Employees();
 		
-		
+		employee.departments.setDepartmentName("fsf");
+		//employee.departments.add();
+		employee.departments.findById("2");
+		System.out.println(employee.departments.getDepartmentName());
 		
 	}
 

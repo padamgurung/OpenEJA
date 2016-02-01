@@ -1,0 +1,16 @@
+package openeja.generate;
+
+public class ReferenceEntityDetail {
+
+	private String tableName;
+	private String columnName;
+	private String referencedTableName;
+	private String referencedColumnName;
+	
+	public ReferenceEntityDetail(){
+		this.tableName = "";
+		this.columnName = "";
+		this.referencedTableName = "";
+		this.referencedColumnName = "";
+	}
+}

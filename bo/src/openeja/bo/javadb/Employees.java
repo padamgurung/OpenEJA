@@ -20,11 +20,21 @@ public class Employees extends Entity {
 	@Column(name = "email", type = "varchar", length = "50")
 	private String email;
 
+	@ManyToOne
+	@Column(name = "departments_id", type = "int")
+	private int departmentsId;
+
+	@ManyToOne
+	public Departments departments;
+
+
 	public Employees(){
 		this.id = 0;
 		this.firstName = "";
 		this.lastName = "";
 		this.email = "";
+		this.departmentsId = 0;
+		this.departments = new Departments();
 
 	}
 	public void setId(int id){
@@ -50,5 +60,11 @@ public class Employees extends Entity {
 	}
 	public String getEmail(){
 		return email;
+	}
+	public void setDepartmentsId(int departmentsId){
+		this.departmentsId = departmentsId;
+	}
+	public int getDepartmentsId(){
+		return departmentsId;
 	}
 }
