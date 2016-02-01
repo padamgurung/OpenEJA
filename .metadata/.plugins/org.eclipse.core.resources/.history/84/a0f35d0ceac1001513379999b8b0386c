@@ -1,7 +1,0 @@
-package Example;
-
-import OpenEJA.ORM.Entity;
-
-public class User extends Entity {
-
-}
