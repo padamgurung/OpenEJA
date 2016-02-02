@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions>
+	<wsdl:types>
+		<schema>
+			<element>
+				<complexType>
+					<element />
+				</complexType>
+			</element>
+		</schema>
+	</wsdl:types>
+	<wsdl:binding>
+		<wsdlsoap:binding />
+		<wsdl:operation>
+			<wsdlsoap:operation />
+			<wsdl:input>
+				<wsdlsoap:body />
+			</wsdl:input>
+			<wsdl:ouput>
+				<wsdlsoap:body />
+			</wsdl:ouput>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service>
+		<wsdl:port>
+			<wsdlsoap:address />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
