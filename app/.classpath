@@ -6,5 +6,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/bo"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/dal"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/orm"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ws"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

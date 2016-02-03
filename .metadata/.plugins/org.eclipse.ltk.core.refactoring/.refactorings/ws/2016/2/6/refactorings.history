@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;ws/src/openeja/webservice/wsdl/helloservice.xml&apos; to &apos;helloservice.wsdl&apos;" description="Rename resource &apos;helloservice.xml&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/openeja/webservice/wsdl/helloservice.xml" name="helloservice.wsdl" stamp="1454462865160" updateReferences="true"/>
+</session>

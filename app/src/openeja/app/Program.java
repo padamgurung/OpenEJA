@@ -6,6 +6,7 @@ package openeja.app;
 import openeja.bo.javadb.Employees;
 import openeja.bo.javadb.Test;
 import openeja.generate.EntityGenerator;
+import openeja.xml.XMLProcessor;
 
 
 
@@ -14,7 +15,7 @@ public class Program {
 	public static void main(String[] args) {
 
 	
-		EntityGenerator e = new EntityGenerator();
+		/*EntityGenerator e = new EntityGenerator();
 		//e.generateEntity("test","javadb");
 		e.generateAllEntities("javadb");
 		Test test = new Test();
@@ -27,7 +28,7 @@ public class Program {
 		test.setPrice(12.12);
 	 test.add();
 		//test.update();
-		//test.remove();*/
+		//test.remove();
 		test.load();
 		System.out.println(test.getAddresss());
 		System.out.println(test.getCreatedDate());
@@ -42,7 +43,10 @@ public class Program {
 		employee.departments.setDepartmentName("fsf");
 		//employee.departments.add();
 		employee.departments.findById("2");
-		System.out.println(employee.departments.getDepartmentName());
+		System.out.println(employee.departments.getDepartmentName());*/
+		
+		XMLProcessor xml = new XMLProcessor();
+		xml.process();
 		
 	}
 

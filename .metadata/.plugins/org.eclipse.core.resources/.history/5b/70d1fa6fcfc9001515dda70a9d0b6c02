@@ -1,0 +1,22 @@
+package openeja.xml;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+public class XMLProcessor {
+	
+	public void Process(){
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		factory.setIgnoringComments(true);
+		factory.setIgnoringElementContentWhitespace(true);
+		factory.setValidating(true);
+		
+		try {
+			DocumentBuilder builder = factory.newDocumentBuilder();
+		} catch (ParserConfigurationException e) {			
+			e.printStackTrace();
+		}
+	}
+
+}

@@ -1,0 +1,11 @@
+package openeja.xml;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+
+public class XMLProcessor {
+	
+	public void Process(){
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+	}
+
+}

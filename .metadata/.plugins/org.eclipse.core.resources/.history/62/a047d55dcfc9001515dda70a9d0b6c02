@@ -1,0 +1,16 @@
+package openeja.xml;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+
+public class XMLProcessor {
+	
+	public void Process(){
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		factory.setIgnoringComments(true);
+		factory.setIgnoringElementContentWhitespace(true);
+		factory.setValidating(true);
+		
+		DocumentBuilder builder = factory.newDocumentBuilder();
+	}
+
+}

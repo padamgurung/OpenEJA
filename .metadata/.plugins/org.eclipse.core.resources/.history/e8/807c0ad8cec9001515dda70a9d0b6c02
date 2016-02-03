@@ -1,0 +1,5 @@
+package openeja.xml;
+
+public class XMLProcessor {
+
+}
