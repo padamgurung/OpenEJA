@@ -1,4 +1,5 @@
 # OpenEJA (Open Enterprise Java Application) Framework
+(Most beautifully written code and elegant in Java)
 
 N-Tier Architecture
 
